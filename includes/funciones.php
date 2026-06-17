@@ -29,3 +29,9 @@ function validar_ci($ci) {
         throw new Exception("La cédula tiene que ser un número válido.");
     }
 }
+
+function validar_tarjeta($tarjeta) {
+    if (!is_numeric($tarjeta) || (int)$tarjeta <= 0) {
+        throw new Exception("El número de tarjeta tiene que ser un número válido.");
+    }
+}
