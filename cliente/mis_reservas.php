@@ -6,9 +6,22 @@ requerir_login();
 require_once '../includes/header.php';
 
 $ci = $_SESSION['usuario_actual']['ci'];
+
+$error = "";
+if (isset($_GET['error'])) {
+    $error = htmlspecialchars($_GET['error']);
+}
+
 ?>
 
+
 <h2>mis reservas</h2>
+
+<?php if (!empty($error)): ?>
+    <div class="error">
+        <?php echo $error; ?>
+    </div>
+<?php endif; ?>
 
 <table border="1" cellpadding="8" style="border-collapse: collapse; text-align: center;">
     <tr>
@@ -27,7 +40,6 @@ $ci = $_SESSION['usuario_actual']['ci'];
             try {
                 $num_hab = $res['numero_hab'];
 
-                // buscar hab en sesión
                 if (!isset($_SESSION['habitaciones'][$num_hab])) {
                     throw new Exception("Habitación no encontrada");
                 }
@@ -44,11 +56,11 @@ $ci = $_SESSION['usuario_actual']['ci'];
                 $subtotal = $noches * $precio_unidad;
 
             } catch (Exception $e) {
-                // si hay errores pongo valores por defecto 
                 $precio_unidad = 0;
                 $noches = 0;
                 $subtotal = 0;
             }
+            // valores por defecto x si las dudas
             ?>
             <tr>
                 <td><?php echo $num_hab; ?></td>
