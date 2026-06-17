@@ -1,0 +1,3 @@
+- validaciones de php de los datos de registro
+- validaciones con try catch
+- implementar funciones (como para validar datos y para metodos http y condiciones iniciales)
